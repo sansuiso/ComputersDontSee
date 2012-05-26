@@ -89,9 +89,9 @@ int main(int argc, char * const argv[])
 	CreateRandomMask(frameSize, 0.5, randomMask50);
 	masks.push_back(randomMask50);
 	
-	cv::Mat randomMask80;
-	CreateRandomMask(frameSize, 0.8, randomMask80);
-	masks.push_back(randomMask80);
+	cv::Mat randomMask90;
+	CreateRandomMask(frameSize, 0.9, randomMask90);
+	masks.push_back(randomMask90);
 	
 	cv::Mat rowMask;
 	CreateInterleavedRowsMask(frameSize, rowMask);
@@ -159,7 +159,7 @@ int main(int argc, char * const argv[])
 		RescaleAndDisplay(composite, "Random 50");
 	
 		ComposeSidebySide(maskedInputs[1], reconstructionResults[1], composite);
-		RescaleAndDisplay(composite, "Random 80");
+		RescaleAndDisplay(composite, "Random 90");
 
 		ComposeSidebySide(maskedInputs[2], reconstructionResults[2], composite);
 		RescaleAndDisplay(composite, "Lines");
@@ -172,8 +172,8 @@ int main(int argc, char * const argv[])
 		RescaleAndDisplay(maskedInputs[0], "Random 50");
 		RescaleAndDisplay(reconstructionResults[0], "Inpainting 50");
 
-		RescaleAndDisplay(maskedInputs[1], "Random 80");
-		RescaleAndDisplay(reconstructionResults[1], "Inpainting 80");
+		RescaleAndDisplay(maskedInputs[1], "Random 90");
+		RescaleAndDisplay(reconstructionResults[1], "Inpainting 90");
 
 		RescaleAndDisplay(maskedInputs[2], "Lines");
 		RescaleAndDisplay(reconstructionResults[2], "Lines-Inpainted");
