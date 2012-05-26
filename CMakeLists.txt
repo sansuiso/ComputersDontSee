@@ -38,3 +38,14 @@ target_link_libraries(
 	ComputersDontSee
 	${OpenCV_LIBS}
 )
+
+add_executable(
+	BgSubtract
+	src/apps/main_bg_subtract.cpp
+)
+
+target_link_libraries(
+	BgSubtract
+	ComputersDontSee
+	${OpenCV_LIBS}
+)
