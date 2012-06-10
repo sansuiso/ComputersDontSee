@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Computersdontsee by sansuiso</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Computersdontsee</h1>
+        <p>Image processing examples and tutorials in C++/OpenCV</p>
+        <p class="view"><a href="https://github.com/sansuiso/ComputersDontSee">View the Project on GitHub <small>sansuiso/ComputersDontSee</small></a></p>
+        <ul>
+          <li><a href="https://github.com/sansuiso/ComputersDontSee/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sansuiso/ComputersDontSee/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sansuiso/ComputersDontSee">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>ComputersDontSee</h1>
+
+<p>AUthor: Emmanuel d'Angelo</p>
+
+<p><a href="http://www.computersdontsee.net">http://www.computersdontsee.net</a></p>
+
+<p><a href="http://twitter.com/sansuiso">@sansuiso</a></p>
+
+<p><a href="mailto:sansuiso@computersdontsee.net">sansuiso@computersdontsee.net</a></p>
+
+<h2>Overview</h2>
+
+<p>The code presented here is a companion to <a href="http://www.computersdontsee.net">my website</a>.
+My goal is to provide some example code and tutorial-style explanations about variational image processing techniques.</p>
+
+<p>While most of the related resources use matlab code, my goal is to provide C++ examples instead.</p>
+
+<h2>License</h2>
+
+<p>Modified BSD-style (see file LICENCE.txt)</p>
+
+<h2>Technical requirements</h2>
+
+<ul>
+<li>OpenCV 2.4, C++ API (but should work with previous 2.x C++ versions)</li>
+<li>cmake to build the library and the executables</li>
+</ul><h2>General overview</h2>
+
+<p>The code repository is divided in two parts : a library and some command line applications.</p>
+
+<h2>Available functions</h2>
+
+<h3>Image denoising</h3>
+
+<ul>
+<li>
+<strong>Rudin-Osher-Fatemi (TV-L2) denoising</strong>
+Implemented using algorithm 1 of [Ref. 1][1], i.e. primal-dual first order scheme without acceleration.</li>
+</ul><h3>Image inpainting</h3>
+
+<ul>
+<li><strong>TV constrained inpainting</strong></li>
+</ul><h2>References</h2>
+
+<p>[1]: Chambolle, A., Pock, T. (2010). A First-Order Primal-Dual Algorithm for Convex Problems with Applications to Imaging. Journal of Mathematical Imaging and Vision, 40(1), 120–145.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sansuiso">sansuiso</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
