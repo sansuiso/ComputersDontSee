@@ -21,7 +21,7 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "masking.hpp"
+#include <cds/tools/masking.hpp>
 
 void cds::CreateRandomMask(cv::Size frameSize, float occlusionRatio, cv::Mat &mask)
 {

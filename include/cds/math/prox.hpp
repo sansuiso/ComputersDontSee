@@ -21,16 +21,48 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "quality.hpp"
-#include <opencv2/imgproc/imgproc.hpp>
+#ifndef CDS_PROX_HPP
+#define CDS_PROX_HPP
 
-double cds::SNR(cv::Mat const& testImage, cv::Mat const& gtImage)
+#include <opencv2/core/core.hpp>
+
+namespace cds
 {
-    double numerator = cv::norm(testImage, gtImage);
-    numerator *= numerator;
-    
-    double denominator = cv::norm(gtImage);
-    denominator *= denominator;
-    
-    return -20.0*std::log10(numerator/denominator);
+	/**
+	 *
+	 */
+	void ProxL2Ball(cv::Mat &X, cv::Mat const &center=cv::Mat(), float radius=1.0);
+
+	/**
+	 * Solves the proximal operator associated with the L2 dataterm, i.e. solves the problem:
+	 * 		argmin { |Y-X|^2/(2*tau) + lambda*|Y-dataTerm|^2 }
+	 * X is modified by the function, i.e. contains the solution.
+	 */
+	void ProxL2(cv::Mat &X, cv::Mat const &dataTerm, float lambda, float tau);
+
+
+	/**
+	 * Solves the proximal operator associated with the L2 inpainting dataterm, i.e. solves the problem:
+	 * 		argmin { |Y-X|^2/(2*tau) + lambda*|A(Y)-dataTerm|^2 }
+	 * X is modified by the function, i.e. contains the solution.
+	 */
+	void ProxL2Inpainting(cv::Mat &X, cv::Mat const &dataTerm, cv::Mat const &mask);
+	
+	/**
+	 *
+	 */
+	void ProxLinfBall(cv::Mat &X, cv::Mat const &center=cv::Mat(), float radius=1.0);
+
+	/**
+	 *
+	 */
+	void ProxLinfBall(cv::Mat &X1, cv::Mat &X2, cv::Mat const &C1=cv::Mat(), cv::Mat const &C2=cv::Mat(), float radius=1.0);
+
+	/**
+	 * Computes the proximal operator of the indicator function of the set [xmin,xmax],
+	 * i.e. thresholds x to be in this set.
+	 */
+	void ProxInterval(cv::Mat &X, float xmin=0.0, float xmax=1.0);
 }
+
+#endif	// CDS_PROX_HPP

@@ -68,6 +68,14 @@ namespace cds
 	 * @see VerticalGradientWithForwardScheme
 	 */
 	void VerticalGradientWithBackwardScheme(cv::Mat const &X, cv::Mat &Dx);
+	
+	void HorizontalGradientWithCenteredScheme(cv::Mat const &X, cv::Mat &Dx);
+	void VerticalGradientWithCenteredScheme(cv::Mat const &X, cv::Mat &Dy);
+
+	void HorizontalGradientWith5PointsScheme(const cv::Mat &X, cv::Mat &Dx);
+	void VerticalGradientWith5PointsScheme(const cv::Mat &X, cv::Mat &Dx);
+
+	void gradIsotropicTVSmoothed(cv::Mat const &Xd, cv::Mat &Dxd, float mu);
 }
 	
 #endif	// CDS_DERIVATIVES_HPP

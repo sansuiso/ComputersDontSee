@@ -21,44 +21,44 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef CDS_TV_HPP
-#define CDS_TV_HPP
+#ifndef CDS_PRIMALDUAL_HPP
+#define CDS_PRIMALDUAL_HPP
 
 #include <opencv2/core/core.hpp>
 
 namespace cds
 {
-	/**
-	 * Solves the Rudin-Osher-Fatemi denoising problem: 
-	 * 		min 0.5*lambda*|u-g|^2 + TV(u) 
-	 * using the primal-dual scheme in [1].
-	 * TV is the isotropic Total Variation sqrt(|ux|^2 + |uy|^2), where ux and uy are the derivatives
-	 * of u with respect to x and y respectively.
-	 *
-	 * @param g The observed image of type CV_32FC1
-	 * @param u The resulting image of type CV_32FC1
-	 * @param iterations The number of iterations of the algorithm (25-100 are good values)
-	 * @param lambda Weight of the data term
-	 */
-	void TvDiffusion(cv::Mat const &g, cv::Mat &u, int iterations, float lambda);
-	
-	/**
-	 * Solves the TV-L2 inpainting problem: 
-	 * 		min 0.5*lambda*|Au-g|^2 + TV(u) 
-	 * using the primal-dual scheme in [1].
-	 * TV is the isotropic Total Variation sqrt(|ux|^2 + |uy|^2), where ux and uy are the derivatives
-	 * of u with respect to x and y respectively.
-	 * A is a masking operator.<br />
-	 * The scheme assumes that lambda is 0 when the mask is 0, and infinite when the mask is 1, i.e.
-	 * that the result matches perfectly the observation when the mask is not opaque and is free to evolve
-	 * otherwise.
-	 *
-	 * @param g The observed image of type CV_32FC1
-	 * @param mask The mask image, values in {0,1}, of type CV_32FC1
-	 * @param u The resulting image of type CV_32FC1
-	 * @param iterations The number of iterations of the algorithm (25-100 are good values)
-	 */
-	void TvInpainting(cv::Mat const &g, cv::Mat const &mask, cv::Mat &u, int iterations);		
+  /**
+   * Solves the Rudin-Osher-Fatemi denoising problem: 
+   * 		min 0.5*lambda*|u-g|^2 + TV(u) 
+   * using the primal-dual scheme in [1].
+   * TV is the isotropic Total Variation sqrt(|ux|^2 + |uy|^2), where ux and uy are the derivatives
+   * of u with respect to x and y respectively.
+   *
+   * @param g The observed image of type CV_32FC1
+   * @param u The resulting image of type CV_32FC1
+   * @param iterations The number of iterations of the algorithm (25-100 are good values)
+   * @param lambda Weight of the data term
+   */
+  void TvDiffusion(cv::Mat const &g, cv::Mat &u, int iterations, float lambda);
+  
+  /**
+   * Solves the TV-L2 inpainting problem: 
+   * 		min 0.5*lambda*|Au-g|^2 + TV(u) 
+   * using the primal-dual scheme in [1].
+   * TV is the isotropic Total Variation sqrt(|ux|^2 + |uy|^2), where ux and uy are the derivatives
+   * of u with respect to x and y respectively.
+   * A is a masking operator.<br />
+   * The scheme assumes that lambda is 0 when the mask is 0, and infinite when the mask is 1, i.e.
+   * that the result matches perfectly the observation when the mask is not opaque and is free to evolve
+   * otherwise.
+   *
+   * @param g The observed image of type CV_32FC1
+   * @param mask The mask image, values in {0,1}, of type CV_32FC1
+   * @param u The resulting image of type CV_32FC1
+   * @param iterations The number of iterations of the algorithm (25-100 are good values)
+   */
+  void TvInpainting(cv::Mat const &g, cv::Mat const &mask, cv::Mat &u, int iterations);		
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,4 +69,4 @@ namespace cds
 //     Journal of Mathematical Imaging and Vision, 40(1), 120–145.								//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-#endif	// CDS_TV_HPP
+#endif	// CDS_PRIMALDUAL_HPP

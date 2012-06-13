@@ -21,10 +21,7 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "../lib/masking.hpp"
-#include "../lib/tv.hpp"
-#include "../lib/viz.hpp"
-#include "../lib/quality.hpp"
+#include <CDS.hpp>
 
 #include <iostream>
 #include <string>

@@ -21,9 +21,9 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "tv.hpp"
-#include "derivatives.hpp"
-#include "prox.hpp"
+#include <cds/tv/primaldual.hpp>
+#include <cds/math/prox.hpp>
+#include <cds/math/derivatives.hpp>
 
 #include <iostream>
 
