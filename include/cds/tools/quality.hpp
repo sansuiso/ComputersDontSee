@@ -28,10 +28,21 @@
 
 namespace cds
 {
-	/**
-	 * Computes the Signal-to-Noise Ratio between an image and a ground truth.
-	 */
-	double SNR(cv::Mat const &testImage, cv::Mat const &gtImage);
+  /**
+   * Computes the Signal-to-Noise Ratio between an image and a ground truth.
+   */
+  double SNR(cv::Mat const &testImage, cv::Mat const &gtImage, cv::InputArray const &mask=cv::Mat());
+
+  /**
+   * Computes the Peak Signal-to-Noise Ratio between an image and a reference (ground truth).
+   * By default the dynamic range of the images is set to 1.
+   */
+  double PSNR(cv::Mat const &testImage, cv::Mat const &referenceImage, cv::InputArray const &mask=cv::noArray(), double Imax=1.0);
+
+  /**
+   * Mean Squared Error between two images
+   */
+  double MSE(cv::Mat const &anImage, cv::Mat const &anotherImage, cv::InputArray const &mask=cv::noArray());
 }
 
 #endif	// CDS_QUALITY_HPP

@@ -24,13 +24,45 @@
 #include <cds/tools/quality.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-double cds::SNR(cv::Mat const& testImage, cv::Mat const& gtImage)
+double cds::SNR(cv::Mat const& testImage, cv::Mat const& gtImage, cv::InputArray const &mask)
 {
-    double numerator = cv::norm(testImage, gtImage);
-    numerator *= numerator;
-    
-    double denominator = cv::norm(gtImage);
-    denominator *= denominator;
-    
-    return -20.0*std::log10(numerator/denominator);
+  double mse = cds::MSE(testImage, gtImage, mask);
+  
+  double signalPower = cv::norm(gtImage, cv::NORM_L2, mask);
+  signalPower *= signalPower;
+  int npixels = gtImage.size().area() * gtImage.channels();
+
+  cv::Mat _mask = mask.getMat();
+  if (_mask.data)
+  {
+    npixels = cv::countNonZero(_mask) * gtImage.channels();
+  }
+  signalPower /= npixels;
+
+  return 20.0*std::log10(signalPower/mse);
+}
+
+double cds::PSNR(cv::Mat const &testImage, cv::Mat const &referenceImage, cv::InputArray const &mask, double Imax)
+{
+  double mse = cds::MSE(testImage, referenceImage, mask);
+
+  return 20.0*std::log10(Imax) - 10.0*std::log(mse);
+}
+
+double cds::MSE(cv::Mat const &anImage, cv::Mat const &anotherImage, cv::InputArray const &mask)
+{
+  CV_Assert(anImage.size() == anotherImage.size() && anImage.type() == anotherImage.type());
+
+  int npixels = anImage.size().area() * anImage.channels();
+
+  cv::Mat _mask = mask.getMat();
+  if (_mask.data)
+  {
+    npixels = cv::countNonZero(_mask) * anImage.channels();
+  }
+
+  cv::Mat errorImage = anImage - anotherImage;
+  cv::multiply(errorImage, errorImage, errorImage);
+
+  return cv::norm(errorImage, cv::NORM_L1, mask) / npixels;
 }
