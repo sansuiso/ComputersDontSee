@@ -26,5 +26,6 @@
 
 #include "prox.hpp"
 #include "derivatives.hpp"
+#include "thresholding.hpp"
 
 #endif  // CDS_MATH_HPP

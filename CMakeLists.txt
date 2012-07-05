@@ -57,3 +57,17 @@ target_link_libraries(
 	ComputersDontSee
 	${OpenCV_LIBS}
 )
+
+# --- Soft thresholding + DCT ---
+file( GLOB DCT_THRESHOLDING_SOURCES src/dct_denoising/*.cpp )
+
+add_executable(
+	cds_dct_denoising
+	${DCT_THRESHOLDING_SOURCES}
+)
+
+target_link_libraries(
+	cds_dct_denoising
+	ComputersDontSee
+	${OpenCV_LIBS}
+)
