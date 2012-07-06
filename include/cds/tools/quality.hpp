@@ -43,6 +43,11 @@ namespace cds
    * Mean Squared Error between two images
    */
   double MSE(cv::Mat const &anImage, cv::Mat const &anotherImage, cv::InputArray const &mask=cv::noArray());
+
+  /**
+   * Structured Similarity (SSIM) index
+   */
+  void SSIM(cv::Mat const &X, cv::Mat const &Y, cv::Mat &ssim_map, float L=1.0, float k1=0.01, float k2=0.03, int size=8);
 }
 
 #endif	// CDS_QUALITY_HPP

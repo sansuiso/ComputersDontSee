@@ -66,3 +66,52 @@ double cds::MSE(cv::Mat const &anImage, cv::Mat const &anotherImage, cv::InputAr
 
   return cv::norm(errorImage, cv::NORM_L1, mask) / npixels;
 }
+
+void cds::SSIM(cv::Mat const &X, cv::Mat const &Y, cv::Mat &ssim_map, float L, float k1, float k2, int size)
+{
+  float const C1 = k1*k1*L*L;
+  float const C2 = k2*k2*L*L;
+
+  cv::Mat X2, Y2, XY;
+  cv::multiply(X, X, X2);
+  cv::multiply(Y, Y, Y2);
+  cv::multiply(X, Y, XY);
+
+  cv::Mat mu_x, mu_y;
+  cv::BoxFilter(X, mu_x, CV_32F, cv::Size(size,size));
+  cv::BoxFilter(Y, mu_y, CV_32F, cv::Size(size,size));
+
+  cv::Mat mu_x2, mu_y2, mu_xy;
+  cv::multiply(mu_x, mu_x, mu_x2);
+  cv::multiply(mu_y, mu_y, mu_y2);
+  cv::multiply(mu_x,, mu_y, mu_xy);
+
+  cv::Mat sigma_x2, sigma_y2, sigma_xy;
+  cv::BoxFilter(X2, sigma_x2, CV_32F, cv::Size(size,size));
+  cv::BoxFilter(Y2, sigma_y2, CV_32F, cv::Size(size,size));
+  cv::BoxFilter(XY, sigma_xy, CV_32F, cv::Size(size,size));
+  sigma_x2 -= mu_x2;
+  sigma_y2 -= mu_y2;
+  sigma_xy -= mu_xy;
+
+  cv::Mat A, B, C, D;
+
+  cv::multiply(mu_x, mu_y, A);
+  A *= 2.0;
+  A += cv::Scalar::all(C1);
+
+  B = 2.0*sigma_xy;
+  B += cv::Scalar::all(C2);
+
+  cv::multiply(A, B, ssim_map);
+
+  C = sigma_x2 + sigma_y2;
+  C += cv::Scalar::all(C1);
+
+  D = sigma_x2 + sigma_y2;
+  D *= cv::Scalar::all(C2);
+
+  cv::multiply(C, D, C);
+
+  cv::divide(ssim_map, C, ssim_map);
+}
