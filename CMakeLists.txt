@@ -58,6 +58,20 @@ target_link_libraries(
 	${OpenCV_LIBS}
 )
 
+# --- Ripples ---
+file( GLOB RIPPLES_APP_SOURCES src/ripples/*.cpp )
+
+add_executable(
+	ripples
+	${RIPPLES_APP_SOURCES}
+)
+
+target_link_libraries(
+	ripples
+	ComputersDontSee
+	${OpenCV_LIBS}
+)
+
 # --- Soft thresholding + DCT ---
 file( GLOB DCT_THRESHOLDING_SOURCES src/dct_denoising/*.cpp )
 
